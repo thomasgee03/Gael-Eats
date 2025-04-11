@@ -6,11 +6,10 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <div className="relative">
-        <img
-          src="/images/OliverHall.jpeg"
-          alt="Oliver Hall"
+      <img 
+        src={`${process.env.PUBLIC_URL}/images/OliverHall.jpeg`} 
+        alt="Oliver Hall" />
           className="w-[100vw] h-auto object-cover"
-        />
         <h2 className="absolute inset-0 flex items-center justify-center text-white text-6xl font-bold bg-black bg-opacity-50">
           Oliver Hall
         </h2>

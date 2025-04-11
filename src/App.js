@@ -24,6 +24,7 @@ function App() {
 
       {/* Routes */}
       <Routes>
+  <Route path="/" element={<HomePage />} />
   <Route path="/home-page" element={<HomePage />} />
   <Route path="/daily-menu" element={<DailyMenu />} />
   <Route path="/hours" element={<Hours />} />

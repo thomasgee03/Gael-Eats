@@ -8,8 +8,8 @@ export default function HomePage() {
       <div className="relative">
       <img 
         src={`${process.env.PUBLIC_URL}/images/OliverHall.jpeg`} 
-        alt="Oliver Hall" />
-          className="w-[100vw] h-auto object-cover"
+        alt="Oliver Hall"
+        className="w-[100vw] h-auto object-cover" />
         <h2 className="absolute inset-0 flex items-center justify-center text-white text-6xl font-bold bg-black bg-opacity-50">
           Oliver Hall
         </h2>
@@ -24,7 +24,7 @@ export default function HomePage() {
       {/* Dining Plan Section */}
       <div className="relative">
         <img
-          src="/images/FishSandwich.jpeg"
+          src={`${process.env.PUBLIC_URL}/images/FishSandwich.jpeg`} 
           alt="Fish Sandwich"
           className="w-[100vw] h-auto object-cover"
         />

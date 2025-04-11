@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 import HomePage from './pages/01-HomePage';
 import DailyMenu from './pages/02-DailyMenu';
@@ -9,6 +9,7 @@ import Submission from './pages/04-Submission';
 
 function App() {
   return (
+    <Router>
     <div className="min-h-screen bg-gray-100 relative flex flex-col justify-center items-center">
       {/* Navigation Buttons - TOP RIGHT */}
       <nav className="bg-white shadow p-4 flex justify-between items-center w-full px-4">
@@ -30,6 +31,7 @@ function App() {
 </Routes>
 
     </div>
+    </Router>
   );
 }
 

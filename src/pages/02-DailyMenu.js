@@ -66,7 +66,7 @@ function DailyMenu() {
               </div>
             </div>
             <div>
-              <img src={foodImage} alt={section.title} className="rounded shadow" />
+              {/*<img src={foodImage} alt={section.title} className="rounded shadow" /> */}
             </div>
           </div>
         ))}

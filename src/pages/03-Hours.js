@@ -7,7 +7,7 @@ function Hours() {
         <img 
           src={`${process.env.PUBLIC_URL}/images/DiningHall.jpeg`} 
           alt="Dining Hall"
-          className="w-[100vw] h-400px object-cover" 
+          className="w-[100vw] h-[400px] object-cover" 
         />
         <h2 className="absolute inset-0 flex items-center justify-center text-white text-6xl font-bold bg-black bg-opacity-50">
           Dining Hours

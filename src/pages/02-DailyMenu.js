@@ -1,6 +1,14 @@
 import React from 'react';
 
-const foodImage = `${process.env.PUBLIC_URL}/images/fruit.jpg`; // Replace with your actual image path
+<div className="relative">
+<img 
+  src={`${process.env.PUBLIC_URL}/images/OliverHall.jpeg`} 
+  alt="Oliver Hall"
+  className="w-[100vw] h-auto object-cover" />
+  <h2 className="absolute inset-0 flex items-center justify-center text-white text-6xl font-bold bg-black bg-opacity-50">
+    The Options
+  </h2>
+  </div>
 
 const menuSections = [
   {
@@ -38,10 +46,6 @@ function DailyMenu() {
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-white text-center">
           <h2 className="text-4xl font-bold">The Options</h2>
-          <p className="mt-2 text-lg">Submissions and menu details of your dining guide</p>
-          <button className="mt-4 bg-white text-black px-4 py-2 rounded hover:bg-gray-200">
-            Back
-          </button>
         </div>
       </div>
 

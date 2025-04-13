@@ -1,15 +1,5 @@
 import React from 'react';
 
-<div className="relative">
-<img 
-  src={`${process.env.PUBLIC_URL}/images/OliverHall.jpeg`} 
-  alt="Oliver Hall"
-  className="w-[100vw] h-auto object-cover" />
-  <h2 className="absolute inset-0 flex items-center justify-center text-white text-6xl font-bold bg-black bg-opacity-50">
-    The Options
-  </h2>
-  </div>
-
 const menuSections = [
   {
     title: 'Chefs Table',
@@ -35,14 +25,14 @@ const menuSections = [
 
 function DailyMenu() {
   return (
-    <div className="bg-white">
+    <div className="bg-white w-screen overflow-x-hidden">
 
       {/* Hero section */}
-      <div className="relative">
+      <div className="relative w-screen">
         <img
           src={`${process.env.PUBLIC_URL}/images/OliverHall.jpeg`}
           alt="Oliver Hall"
-          className="w-full h-[400px] object-cover"
+          className="w-screen h-[400px] object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <h2 className="text-6xl font-bold text-white text-center">The Options</h2>
@@ -52,7 +42,7 @@ function DailyMenu() {
       {/* Menu sections */}
       <div className="w-full px-6 py-12 space-y-10">
         {menuSections.map((section, index) => (
-          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center w-full">
             <div>
               <h3 className="text-2xl font-bold">{section.title}</h3>
               <p className="text-gray-600 mt-1">{section.description}</p>

@@ -13,16 +13,22 @@ function App() {
     <div className="min-h-screen bg-gray-100 relative flex flex-col justify-center items-center">
       {/* Navigation Buttons - TOP RIGHT */}
       <nav className="bg-white shadow p-4 flex justify-between items-center w-full px-4">
-        <div className="space-x-4">
-          <Link to="/" className="text-xl font-bold text-black-600 hover:text-blue-600">
-            Gael Eats
-          </Link>
-          <Link to="/home-page" className="hover:text-blue-600">Home Page</Link>
-          <Link to="/daily-menu" className="hover:text-blue-600">Daily Menu</Link>
-          <Link to="/hours" className="hover:text-blue-600">Hours</Link>
-          <Link to="/submission" className="hover:text-blue-600">Submission</Link>
-        </div>
-      </nav>
+  {/* Left side: Gael Eats */}
+  <div>
+    <Link to="/" className="text-xl font-bold text-black hover:text-blue-600">
+      Gael Eats
+    </Link>
+  </div>
+
+  {/* Right side: other links */}
+  <div className="space-x-4">
+    <Link to="/home-page" className="hover:text-blue-600">Home Page</Link>
+    <Link to="/daily-menu" className="hover:text-blue-600">Daily Menu</Link>
+    <Link to="/hours" className="hover:text-blue-600">Hours</Link>
+    <Link to="/submission" className="hover:text-blue-600">Submission</Link>
+  </div>
+</nav>
+
 
       {/* Routes */}
       <Routes>

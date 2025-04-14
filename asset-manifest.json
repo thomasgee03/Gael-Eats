@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Gael-Eats/static/css/main.bd0e7414.css",
-    "main.js": "/Gael-Eats/static/js/main.cee2af2a.js",
+    "main.css": "/Gael-Eats/static/css/main.63f35005.css",
+    "main.js": "/Gael-Eats/static/js/main.1804207e.js",
     "static/js/453.a26a2a04.chunk.js": "/Gael-Eats/static/js/453.a26a2a04.chunk.js",
     "index.html": "/Gael-Eats/index.html",
-    "main.bd0e7414.css.map": "/Gael-Eats/static/css/main.bd0e7414.css.map",
-    "main.cee2af2a.js.map": "/Gael-Eats/static/js/main.cee2af2a.js.map",
+    "main.63f35005.css.map": "/Gael-Eats/static/css/main.63f35005.css.map",
+    "main.1804207e.js.map": "/Gael-Eats/static/js/main.1804207e.js.map",
     "453.a26a2a04.chunk.js.map": "/Gael-Eats/static/js/453.a26a2a04.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bd0e7414.css",
-    "static/js/main.cee2af2a.js"
+    "static/css/main.63f35005.css",
+    "static/js/main.1804207e.js"
   ]
 }

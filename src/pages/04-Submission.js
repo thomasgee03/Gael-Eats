@@ -14,7 +14,7 @@ function Submission() {
   };
 
   return (
-    <div className="max-w-screen-lg mx-auto p-8">
+    <div className="max-w-screen-lg mx-auto p-8 pt-0">
       {/* Heading */}
       <div className="mb-4">
         <h2 className="text-3xl font-bold">{selectedStation}</h2>

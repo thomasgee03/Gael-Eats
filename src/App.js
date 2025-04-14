@@ -10,7 +10,7 @@ import Submission from './pages/04-Submission';
 function App() {
   return (
     <Router>
-    <div className="min-h-screen bg-gray-100 relative flex flex-col justify-center items-center">
+    <div className="min-h-screen bg-gray-100 relative flex flex-col items-center">
       {/* Navigation Buttons - TOP RIGHT */}
       <nav className="bg-white shadow p-4 flex justify-between items-center w-full px-4">
   {/* Left side: Gael Eats */}

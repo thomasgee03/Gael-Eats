@@ -1,6 +1,31 @@
 import React, { useState } from 'react';
 import { Star } from 'lucide-react';
 import Select from 'react-select';
+import axios from 'axios';
+
+// ... inside your component
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  if (!email.endsWith('@stmarys-ca.edu')) {
+    alert('Email must be a @stmarys-ca.edu address');
+    return;
+  }
+
+  try {
+    await axios.post('http://localhost:5000/api/submit', {
+      station: selectedStation,
+      email,
+      rating,
+      foodItem: selectedFoodItem // you'll add this from the searchable dropdown
+    });
+    alert('Submission successful!');
+  } catch (err) {
+    console.error(err);
+    alert('Failed to submit');
+  }
+};
+
 
 function Submission() {
   const [selectedStation, setSelectedStation] = useState('Chefs Table');
@@ -46,7 +71,7 @@ function Submission() {
       message,
     });
 
-    // TODO: Save this info to localStorage or backend so ChefTable.js etc. can read it
+    
   };
 
   return (

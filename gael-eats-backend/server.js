@@ -1,12 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const Submission = require('./models/Submission');
 require('dotenv').config();
 
 const submissionsRoute = require('./routes/submissions');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: 'https://thomasgee03.github.io/Gael-Eats/',
+}));
 app.use(express.json());
 
 app.use('/api/submissions', submissionsRoute);

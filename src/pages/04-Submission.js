@@ -39,7 +39,7 @@ function Submission() {
     }
   
     try {
-      await axios.post('http://localhost:5000/api/submit', {
+      await axios.post('https://gael-eats-1.onrender.com', {
         station: selectedStation,
         foodItem: selectedFood?.value,
         rating,

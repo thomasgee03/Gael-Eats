@@ -2,75 +2,83 @@ import React, { useState } from 'react';
 import { Star } from 'lucide-react';
 
 function Submission() {
+  const [selectedStation, setSelectedStation] = useState('Chefs Table');
   const [rating, setRating] = useState(0);
 
+  const stations = ['Chefs Table', 'Clean Plate', 'Central Oven', 'Black Label Grill', 'WildFlour'];
+
   return (
-    <div className="min-h-screen bg-white p-6 flex flex-col items-center">
-      <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+    <div className="max-w-screen-lg mx-auto p-8">
+      {/* Navbar */}
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-xl font-bold">Site name</h1>
+        <div className="flex space-x-4 items-center">
+          <p>Page</p>
+          <p>Page</p>
+          <p>Page</p>
+          <button className="bg-black text-white px-4 py-1 rounded">Submit</button>
+        </div>
+      </div>
 
-        {/* Left Section */}
+      {/* Dropdown */}
+      <div className="mb-6">
+        <label htmlFor="station-select" className="block mb-2 font-semibold">
+          Choose Station:
+        </label>
+        <select
+          id="station-select"
+          value={selectedStation}
+          onChange={(e) => setSelectedStation(e.target.value)}
+          className="border border-gray-300 px-4 py-2 rounded"
+        >
+          {stations.map((station) => (
+            <option key={station} value={station}>
+              {station}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Heading */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         <div>
-          <h1 className="text-4xl font-bold mb-2">Chefs Table</h1>
-          <p className="text-gray-600 mb-6">Subheading for description or instructions</p>
-          <p className="text-sm text-gray-500 mb-12">Disclaimer to be sending in correct menu items</p>
+          <h2 className="text-3xl font-bold">{selectedStation}</h2>
+          <p className="text-gray-600">Subheading for description or instructions</p>
+          <p className="text-sm text-gray-400 mt-1">Add a note to be specific with correct menu items</p>
 
-          {/* Submission Form */}
-          <h2 className="text-2xl font-semibold mb-4">Submission</h2>
-          <form className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input
-                type="text"
-                placeholder="First name"
-                className="border p-2 rounded w-full"
-              />
-              <input
-                type="text"
-                placeholder="Last name"
-                className="border p-2 rounded w-full"
-              />
+          {/* Form */}
+          <form className="mt-6 space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <input type="text" placeholder="First name" className="border border-gray-300 px-4 py-2 rounded" />
+              <input type="text" placeholder="Last name" className="border border-gray-300 px-4 py-2 rounded" />
             </div>
-            <input
-              type="email"
-              placeholder="Email address"
-              className="border p-2 rounded w-full"
-            />
-            <textarea
-              placeholder="Your message"
-              className="border p-2 rounded w-full h-32"
-            ></textarea>
+            <input type="email" placeholder="Email address" className="w-full border border-gray-300 px-4 py-2 rounded" />
+            <textarea placeholder="Your message" className="w-full border border-gray-300 px-4 py-2 rounded h-32" />
 
-            {/* Rating System */}
-            <div className="mt-4">
-              <p className="font-medium mb-1">Your Rating</p>
-              <div className="flex space-x-1">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <Star
-                    key={star}
-                    size={30}
-                    className={`cursor-pointer ${
-                      rating >= star ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-                    }`}
-                    onClick={() => setRating(star)}
-                  />
-                ))}
-              </div>
+            {/* Star Rating */}
+            <div className="flex items-center space-x-1">
+              {[1, 2, 3, 4, 5].map((value) => (
+                <Star
+                  key={value}
+                  size={24}
+                  onClick={() => setRating(value)}
+                  className={`cursor-pointer ${value <= rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-400'}`}
+                />
+              ))}
+              <span className="ml-2 text-sm text-gray-600">{rating} / 5</span>
             </div>
 
-            <button
-              type="submit"
-              className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 mt-4"
-            >
+            <button type="submit" className="bg-black text-white w-full py-2 rounded">
               Submit
             </button>
           </form>
         </div>
 
-        {/* Right Section - Image */}
-        <div className="flex justify-center">
+        <div>
           <img
-            src={`${process.env.PUBLIC_URL}/images/ChefsTableSign.jpeg`} // Replace with your image file name
-            alt="Chef's Table"
-            className="rounded shadow max-w-full"
+            src={`${process.env.PUBLIC_URL}/images/MenuPoster.jpeg`}
+            alt="Menu Poster"
+            className="w-full rounded shadow"
           />
         </div>
       </div>
@@ -79,4 +87,5 @@ function Submission() {
 }
 
 export default Submission;
+
 

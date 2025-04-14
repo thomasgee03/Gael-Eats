@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 const menuSections = [
   {
@@ -47,12 +49,18 @@ function DailyMenu() {
               <h3 className="text-2xl font-bold">{section.title}</h3>
               <p className="text-gray-600 mt-1">{section.description}</p>
               <div className="mt-4 space-x-4">
-                <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
-                  Submission
-                </button>
-                <button className="border border-gray-400 text-gray-800 px-4 py-2 rounded hover:bg-gray-100">
-                  Menu
-                </button>
+              <Link to={`/submission?station=${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
+              <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
+                Submission
+              </button>
+              </Link>
+
+              <Link to={`/${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
+              <button className="border border-gray-400 text-gray-800 px-4 py-2 rounded hover:bg-gray-100">
+                Menu
+              </button>
+              </Link>
+
               </div>
             </div>
             <div>

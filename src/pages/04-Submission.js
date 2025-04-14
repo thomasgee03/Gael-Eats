@@ -8,18 +8,8 @@ function Submission() {
   const stations = ['Chefs Table', 'Clean Plate', 'Central Oven', 'Black Label Grill', 'WildFlour'];
 
   return (
-    <div className="max-w-screen-lg mx-auto p-8">
-      {/* Navbar */}
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-xl font-bold">Site name</h1>
-        <div className="flex space-x-4 items-center">
-          <p>Page</p>
-          <p>Page</p>
-          <p>Page</p>
-          <button className="bg-black text-white px-4 py-1 rounded">Submit</button>
-        </div>
-      </div>
 
+    <div className="max-w-screen-lg mx-auto p-8">
       {/* Dropdown */}
       <div className="mb-6">
         <label htmlFor="station-select" className="block mb-2 font-semibold">

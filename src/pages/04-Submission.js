@@ -3,30 +3,6 @@ import { Star } from 'lucide-react';
 import Select from 'react-select';
 import axios from 'axios';
 
-// ... inside your component
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  
-  if (!email.endsWith('@stmarys-ca.edu')) {
-    alert('Email must be a @stmarys-ca.edu address');
-    return;
-  }
-
-  try {
-    await axios.post('http://localhost:5000/api/submit', {
-      station: selectedStation,
-      email,
-      rating,
-      foodItem: selectedFoodItem // you'll add this from the searchable dropdown
-    });
-    alert('Submission successful!');
-  } catch (err) {
-    console.error(err);
-    alert('Failed to submit');
-  }
-};
-
-
 function Submission() {
   const [selectedStation, setSelectedStation] = useState('Chefs Table');
   const [rating, setRating] = useState(0);
@@ -54,25 +30,34 @@ function Submission() {
     // Add more here...
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!email.endsWith('@stmarys-ca.edu')) {
       setError('Please use a @stmarys-ca.edu email address.');
       return;
     }
-
-    setError('');
-    console.log({
-      selectedStation,
-      selectedFood: selectedFood?.value,
-      rating,
-      email,
-      message,
-    });
-
-    
+  
+    try {
+      await axios.post('http://localhost:5000/api/submit', {
+        station: selectedStation,
+        foodItem: selectedFood?.value,
+        rating,
+        email,
+        message,
+      });
+      alert('Submission successful!');
+      // Optionally reset the form here
+      setRating(0);
+      setEmail('');
+      setMessage('');
+      setSelectedFood(null);
+    } catch (err) {
+      console.error(err);
+      alert('Failed to submit');
+    }
   };
+  
 
   return (
     <div className="max-w-screen-lg mx-auto p-8">

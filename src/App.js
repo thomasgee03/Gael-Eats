@@ -6,11 +6,11 @@ import HomePage from './pages/01-HomePage';
 import DailyMenu from './pages/02-DailyMenu';
 import Hours from './pages/03-Hours';
 import Submission from './pages/04-Submission';
-import ChefsTable from './pages/ChefsTable';
-import CleanPlate from './pages/CleanPlate';
-import CentralOven from './pages/CentralOven';
-import BlackLabelGrill from './pages/BlackLabelGrill';
-import WildFlour from './pages/WildFlour';
+import ChefsTable from './pages/05-ChefsTable';
+import CleanPlate from './pages/06-CleanPlate';
+import CentralOven from './pages/07-CentralOven';
+import BlackLabelGrill from './pages/08-BlackLabelGrill';
+import WildFlour from './pages/09-WildFlour';
 
 
 function App() {

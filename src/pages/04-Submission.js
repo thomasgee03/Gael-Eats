@@ -39,7 +39,7 @@ function Submission() {
     }
   
     try {
-      await axios.post('https://gael-eats-1.onrender.com', {
+      await axios.post('https://gael-eats-1.onrender.com/api/submissions', {
         station: selectedStation,
         foodItem: selectedFood?.value,
         rating,

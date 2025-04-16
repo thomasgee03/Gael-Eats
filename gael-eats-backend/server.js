@@ -1,57 +1,40 @@
 const express = require('express');
-const mongoose = require('mongoose'); // Keep this at the top
-const cors = require('cors');
-const Submission = require('./models/Submission');
-require('dotenv').config();
+     const mongoose = require('mongoose');
+     const cors = require('cors');
+     require('dotenv').config();
 
-const submissionsRoute = require('./routes/submissions');
+     const submissionsRoute = require('./routes/submissions');
 
-const app = express();
+     const app = express();
 
-// CORS configuration
-app.use(cors({
-  origin: 'https://thomasgee03.github.io',
-}));
+     app.use(cors({
+       origin: 'https://thomasgee03.github.io',
+     }));
 
-// Middleware to parse JSON
-app.use(express.json());
+     app.use(express.json());
 
-// Root route
-app.get('/', (req, res) => {
-  res.send('Server is up and running!');
-});
+     app.get('/', (req, res) => {
+       res.send('Server is up and running!');
+     });
 
-// Submissions route
-app.use('/api/submissions', submissionsRoute);
+     app.use('/api/submissions', submissionsRoute);
 
-// Chefs Table route
-app.get('/api/submissions/chefs-table', async (req, res) => {
-  try {
-    const submissions = await Submission.find({ station: "Chef's Table" });
-    res.json(submissions);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+     const connectDB = async () => {
+       try {
+         console.log('MongoDB URI:', process.env.MONGO_URI ? 'Set' : 'Undefined');
+         await mongoose.connect(process.env.MONGO_URI, {
+           useNewUrlParser: true,
+           useUnifiedTopology: true,
+         });
+         console.log('MongoDB Connected');
+       } catch (err) {
+         console.error('MongoDB connection error:', err);
+         process.exit(1);
+       }
+     };
+     connectDB();
 
-// MongoDB connection
-const connectDB = async () => {
-  try {
-    console.log('Attempting MongoDB connection with URI:', process.env.MONGO_URI ? 'Set' : 'Undefined');
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('MongoDB Connected');
-  } catch (err) {
-    console.error('MongoDB connection error:', err.message);
-    process.exit(1); // Exit if connection fails
-  }
-};
-connectDB();
-
-// Server listening
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+     const PORT = process.env.PORT || 5000;
+     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 

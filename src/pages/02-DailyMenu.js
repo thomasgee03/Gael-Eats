@@ -59,13 +59,13 @@ import React from 'react';
                        <img
                          src={`${process.env.PUBLIC_URL}/images/${section.image}`}
                          alt={`${section.title} image`}
-                         className="w-full rounded shadow"
+                         className="w-4/5 mx-auto rounded shadow"
                        />
                      </div>
                      <div>
                        <h3 className="text-2xl font-bold">{section.title}</h3>
                        <p className="text-gray-600 mt-1">{section.description}</p>
-                       <div className="mt-4 space-x-4">
+                       <div className="mt-4 flex justify-center space-x-4">
                          <Link to={`/submission?station=${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
                            <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
                              Submission
@@ -84,7 +84,7 @@ import React from 'react';
                      <div>
                        <h3 className="text-2xl font-bold">{section.title}</h3>
                        <p className="text-gray-600 mt-1">{section.description}</p>
-                       <div className="mt-4 space-x-4">
+                       <div className="mt-4 flex justify-center space-x-4">
                          <Link to={`/submission?station=${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
                            <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
                              Submission
@@ -101,7 +101,7 @@ import React from 'react';
                        <img
                          src={`${process.env.PUBLIC_URL}/images/${section.image}`}
                          alt={`${section.title} image`}
-                         className="w-full rounded shadow"
+                         className="w-4/5 mx-auto rounded shadow"
                        />
                      </div>
                    </>

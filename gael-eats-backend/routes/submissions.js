@@ -63,7 +63,7 @@ router.get("/black-label-grill", async (req, res) => {
 });
 
 // Route to get submissions for WildFlour
-router.get("/wildflour", async (req, res) => {
+router.get("/wild-flour", async (req, res) => {
   try {
     const submissions = await Submission.find({ station: "WildFlour" });
     console.log("WildFlour submissions:", submissions);

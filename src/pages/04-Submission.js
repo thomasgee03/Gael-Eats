@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Star } from 'lucide-react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 function Submission() {
+  const location = useLocation();
   const [selectedStation, setSelectedStation] = useState("Chef's Table");
   const [rating, setRating] = useState(0);
   const [email, setEmail] = useState('');
@@ -17,6 +19,15 @@ function Submission() {
     'Black Label Grill': { description: '', image: 'BlackLabelGrill.png' },
     'WildFlour': { description: 'Freshly Baked Goods', image: 'WildFlour.png' },
   };
+
+  // Extract the station from the query string
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const stationParam = queryParams.get('station');
+    if (stationParam && stations[stationParam]) {
+      setSelectedStation(stationParam);  // Set station if valid
+    }
+  }, [location.search]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -139,6 +150,7 @@ function Submission() {
 }
 
 export default Submission;
+
 
 
 

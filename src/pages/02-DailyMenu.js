@@ -88,7 +88,7 @@ import React from 'react';
                              Submission
                            </button>
                          </Link>
-                         <Link to={`/${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                         <Link to={`/${section.title.toLowerCase().replace(/[^a-z0-9]/gi, '-')}`}>
                            <button className="border border-gray-400 text-gray-800 px-4 py-2 rounded hover:bg-gray-100">
                              Menu
                            </button>

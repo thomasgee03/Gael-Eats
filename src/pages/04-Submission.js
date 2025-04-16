@@ -12,11 +12,11 @@ function Submission() {
   const [error, setError] = useState('');
 
   const stations = {
-    'Chefs Table': 'World Inspired Cuisine',
-    'Clean Plate': 'Allergen Friendly Zone',
-    'Central Oven': 'Trattoria',
-    'Black Label Grill': '',
-    'WildFlour': 'Freshly Baked Goods',
+    'Chefs Table': { desciption: 'World Inspired Cuisine', image: 'CentralOven.png'},
+    'Clean Plate': { desciption: 'Allergen Friendly Zone', image: 'CentralOven.png'},
+    'Central Oven': { desciption: 'Trattoria', image: 'CentralOven.png'},
+    'Black Label Grill': { desciption: '', image: 'BlackLabelGrill.png'},
+    'WildFlour': { desciption: 'Freshly Baked Goods', image: 'CentralOven.png'},
   };
 
   // Example food list
@@ -139,8 +139,8 @@ function Submission() {
 
         <div>
           <img
-            src={`${process.env.PUBLIC_URL}/images/MenuPoster.jpeg`}
-            alt="Menu Poster"
+            src={stations[selectedStation].image ? `${process.env.PUBLIC_URL}/images/${stations[selectedStation].image}` : `${process.env.PUBLIC_URL}/images/MenuPoster.jpeg`}
+            alt={`${selectedStation} image`}
             className="w-full rounded shadow"
           />
         </div>

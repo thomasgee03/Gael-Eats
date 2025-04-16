@@ -4,7 +4,7 @@ import Select from 'react-select';
 import axios from 'axios';
 
 function Submission() {
-  const [selectedStation, setSelectedStation] = useState('Chefs Table');
+  const [selectedStation, setSelectedStation] = useState("Chef's Table");
   const [rating, setRating] = useState(0);
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');

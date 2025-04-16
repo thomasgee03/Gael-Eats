@@ -9,9 +9,9 @@ import React from 'react';
          imagePosition: 'right',
        },
        {
-         title: 'Clean Plate',
+         title: 'Clean Plates',
          description: 'Allergen Friendly Zone',
-         image: 'CentralOven.png',
+         image: 'CleanPlates.png',
          imagePosition: 'left',
        },
        {
@@ -29,7 +29,7 @@ import React from 'react';
        {
          title: 'WildFlour',
          description: 'Freshly Baked Goods',
-         image: 'CentralOven.png',
+         image: 'WildFlour.png',
          imagePosition: 'right',
        },
      ];

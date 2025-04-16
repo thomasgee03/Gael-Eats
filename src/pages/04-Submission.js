@@ -13,10 +13,10 @@ function Submission() {
 
   const stations = {
     'Chefs Table': { description: 'World Inspired Cuisine', image: 'ChefsTable.png'},
-    'Clean Plate': { description: 'Allergen Friendly Zone', image: 'CentralOven.png'},
+    'Clean Plates': { description: 'Allergen Friendly Zone', image: 'CleanPlates.png'},
     'Central Oven': { description: 'Trattoria', image: 'CentralOven.png'},
     'Black Label Grill': { description: '', image: 'BlackLabelGrill.png'},
-    'WildFlour': { description: 'Freshly Baked Goods', image: 'CentralOven.png'},
+    'WildFlour': { description: 'Freshly Baked Goods', image: 'WildFlour.png'},
   };
 
   // Example food list

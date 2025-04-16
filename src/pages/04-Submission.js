@@ -26,6 +26,11 @@ function Submission() {
       return;
     }
 
+    if (!foodItem) {
+      setError('Food item is required.');
+      return;
+    }
+
     try {
       await axios.post('https://gael-eats-1.onrender.com/api/submissions', {
         station: selectedStation,
@@ -39,6 +44,7 @@ function Submission() {
       setEmail('');
       setMessage('');
       setFoodItem('');
+      setError('');  // Clear error if submission is successful
     } catch (err) {
       console.error(err);
       alert('Failed to submit');
@@ -79,6 +85,7 @@ function Submission() {
               value={foodItem}
               onChange={(e) => setFoodItem(e.target.value)}
               className="w-full border border-gray-300 px-4 py-2 rounded"
+              required
             />
           </div>
 
@@ -132,6 +139,7 @@ function Submission() {
 }
 
 export default Submission;
+
 
 
 

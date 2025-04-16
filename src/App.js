@@ -43,7 +43,7 @@ function App() {
   <Route path="/daily-menu" element={<DailyMenu />} />
   <Route path="/hours" element={<Hours />} />
   <Route path="/submission" element={<Submission />} />
-  <Route path="/chefstable" element={<ChefsTable />} />
+  <Route path="/chefs-table" element={<ChefsTable />} />
   <Route path="/clean-plates" element={<CleanPlates />} />
   <Route path="/central-oven" element={<CentralOven />} />
   <Route path="/black-label-grill" element={<BlackLabelGrill />} />

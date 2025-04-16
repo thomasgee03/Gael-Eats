@@ -27,7 +27,7 @@ app.use('/api/submissions', submissionsRoute);
 // Chefs Table route
 app.get('/api/submissions/chefs-table', async (req, res) => {
   try {
-    const submissions = await Submission.find({ station: "Chefs Table" });
+    const submissions = await Submission.find({ station: "Chef's Table" });
     res.json(submissions);
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -7,7 +7,7 @@ import DailyMenu from './pages/02-DailyMenu';
 import Hours from './pages/03-Hours';
 import Submission from './pages/04-Submission';
 import ChefsTable from './pages/05-ChefsTable';
-import CleanPlate from './pages/06-CleanPlate';
+import CleanPlates from './pages/06-CleanPlates';
 import CentralOven from './pages/07-CentralOven';
 import BlackLabelGrill from './pages/08-BlackLabelGrill';
 import WildFlour from './pages/09-WildFlour';
@@ -44,7 +44,7 @@ function App() {
   <Route path="/hours" element={<Hours />} />
   <Route path="/submission" element={<Submission />} />
   <Route path="/chefs-table" element={<ChefsTable />} />
-  <Route path="/clean-plate" element={<CleanPlate />} />
+  <Route path="/clean-plates" element={<CleanPlates />} />
   <Route path="/central-oven" element={<CentralOven />} />
   <Route path="/black-label-grill" element={<BlackLabelGrill />} />
   <Route path="/wildflour" element={<WildFlour />} />

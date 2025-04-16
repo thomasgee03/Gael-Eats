@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-function CleanPLate() {
+function CleanPlates() {
   return (
     <div className="p-8">
       <h2 className="text-3xl font-bold">Clean Plate</h2>
@@ -10,4 +10,4 @@ function CleanPLate() {
   );
 }
 
-export default CleanPLate;
+export default CleanPlates;

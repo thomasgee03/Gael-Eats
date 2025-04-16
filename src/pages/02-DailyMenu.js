@@ -9,9 +9,9 @@ import React from 'react';
          imagePosition: 'right',
        },
        {
-         title: 'Clean Plate',
+         title: 'Clean Plates',
          description: 'Allergen Friendly Zone',
-         image: 'CleanPlate.png',
+         image: 'CleanPlates.png',
          imagePosition: 'left',
        },
        {

@@ -3,6 +3,14 @@ import { Star } from 'lucide-react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
+const slugToStation = {
+  "chef's-table": "Chef's Table",
+  'clean-plates': 'Clean Plates',
+  'central-oven': 'Central Oven',
+  'black-label-grill': 'Black Label Grill',
+  'wildflour': 'WildFlour',
+};
+
 function Submission() {
   const location = useLocation();
   const [selectedStation, setSelectedStation] = useState("Chef's Table");
@@ -24,10 +32,11 @@ function Submission() {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const stationParam = queryParams.get('station');
-    if (stationParam && stations[stationParam]) {
-      setSelectedStation(stationParam);  // Set station if valid
+    const matchedStation = slugToStation[stationParam];
+    if (matchedStation && stations[matchedStation]) {
+      setSelectedStation(matchedStation);
     }
-  }, [location.search]);
+  }, [location.search]);  
 
   const handleSubmit = async (e) => {
     e.preventDefault();

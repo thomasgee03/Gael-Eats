@@ -5,7 +5,7 @@ import React from 'react';
        {
          title: 'Chefs Table',
          description: 'World Inspired Cuisine',
-         image: 'CentralOven.png',
+         image: 'ChefsTable.png',
          imagePosition: 'right',
        },
        {

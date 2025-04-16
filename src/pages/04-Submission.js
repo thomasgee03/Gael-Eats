@@ -12,7 +12,7 @@ function Submission() {
   const [error, setError] = useState('');
 
   const stations = {
-    'Chefs Table': { description: 'World Inspired Cuisine', image: 'CentralOven.png'},
+    'Chefs Table': { description: 'World Inspired Cuisine', image: 'ChefsTable.png'},
     'Clean Plate': { description: 'Allergen Friendly Zone', image: 'CentralOven.png'},
     'Central Oven': { description: 'Trattoria', image: 'CentralOven.png'},
     'Black Label Grill': { description: '', image: 'BlackLabelGrill.png'},

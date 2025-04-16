@@ -3,15 +3,15 @@ import React from 'react';
 
      const menuSections = [
        {
-         title: 'Chefs Table',
+         title: "Chef's Table",
          description: 'World Inspired Cuisine',
          image: 'ChefsTable.png',
          imagePosition: 'right',
        },
        {
-         title: 'Clean Plates',
+         title: 'Clean Plate',
          description: 'Allergen Friendly Zone',
-         image: 'CleanPlates.png',
+         image: 'CleanPlate.png',
          imagePosition: 'left',
        },
        {
@@ -62,7 +62,7 @@ import React from 'react';
                          className="w-4/5 mx-auto rounded shadow"
                        />
                      </div>
-                     <div>
+                     <div className="flex flex-col items-center">
                        <h3 className="text-2xl font-bold">{section.title}</h3>
                        <p className="text-gray-600 mt-1">{section.description}</p>
                        <div className="mt-4 flex justify-center space-x-4">
@@ -81,7 +81,7 @@ import React from 'react';
                    </>
                  ) : (
                    <>
-                     <div>
+                     <div className="flex flex-col items-center">
                        <h3 className="text-2xl font-bold">{section.title}</h3>
                        <p className="text-gray-600 mt-1">{section.description}</p>
                        <div className="mt-4 flex justify-center space-x-4">

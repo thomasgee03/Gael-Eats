@@ -64,7 +64,7 @@ function Submission() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
         <div>
           <h2 className="text-3xl font-bold">{selectedStation}</h2>
-          <p className="text-gray-600">{stations[selectedStation]. description}</p>
+          <p className="text-gray-600">{stations[selectedStation].description}</p>
           <p className="text-sm text-gray-400 mt-1">Optional: Leave a note about the menu item</p>
 
           {/* Station Dropdown */}

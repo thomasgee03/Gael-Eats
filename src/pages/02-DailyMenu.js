@@ -37,7 +37,6 @@ import React from 'react';
      function DailyMenu() {
        return (
          <div className="bg-white w-screen overflow-x-hidden">
-           {/* Hero section */}
            <div className="relative w-screen">
              <img
                src={`${process.env.PUBLIC_URL}/images/OliverHall.jpeg`}
@@ -49,7 +48,6 @@ import React from 'react';
              </div>
            </div>
 
-           {/* Menu sections */}
            <div className="w-full px-6 py-12 space-y-10">
              {menuSections.map((section, index) => (
                <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center w-full">
@@ -58,7 +56,7 @@ import React from 'react';
                      <div>
                        <img
                          src={`${process.env.PUBLIC_URL}/images/${section.image}`}
-                         alt={`${section.title} image`}
+                         alt={`${section.title}`}
                          className="w-4/5 mx-auto rounded shadow"
                        />
                      </div>
@@ -100,7 +98,7 @@ import React from 'react';
                      <div>
                        <img
                          src={`${process.env.PUBLIC_URL}/images/${section.image}`}
-                         alt={`${section.title} image`}
+                         alt={`${section.title}`}
                          className="w-4/5 mx-auto rounded shadow"
                        />
                      </div>

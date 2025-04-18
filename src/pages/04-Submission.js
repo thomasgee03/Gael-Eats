@@ -77,7 +77,7 @@ function Submission() {
         <div>
           <h2 className="text-3xl font-bold">{selectedStation}</h2>
           <p className="text-gray-600">{stations[selectedStation]?.description || ''}</p>
-          <p className="text-sm text-gray-400 mt-1">Optional: Leave a note about the menu item</p>
+          <p className="text-sm text-gray-400 mt-1"></p>
 
           <div className="my-4">
             <label htmlFor="station-select" className="block mb-2 font-semibold">

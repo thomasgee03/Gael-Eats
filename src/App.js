@@ -32,11 +32,12 @@ function App() {
   <Link to="/daily-menu" className="hover:text-blue-600">Daily Menu</Link>
   <Link to="/hours" className="hover:text-blue-600">Hours</Link>
   <Link
-    to="/submission"
-    className="hover:text-blue-600 border border-black px-2 py-1 rounded"
-  >
-    Submission
-  </Link>
+  to="/submission"
+  className="bg-black text-white px-3 py-1 rounded hover:bg-gray-800 transition"
+>
+  Submission
+</Link>
+
 </div>
 
 </nav>

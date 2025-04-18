@@ -74,7 +74,7 @@ function ChefsTable() {
       setItems([]);
       console.log("[DEBUG] Menu wiped.");
     }
-  };  
+  };    
 
   useEffect(() => {
     fetchSubmissions();

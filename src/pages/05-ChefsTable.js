@@ -48,6 +48,8 @@ function ChefsTable() {
       const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
       const hour = now.getHours();
       const minute = now.getMinutes();
+      
+      console.log(`[${now.toLocaleTimeString()}] Checking wipe condition...`);
 
       const inWipeWindow =
   minute % 2 === 0 || // 👈 Add this line to wipe on even minutes

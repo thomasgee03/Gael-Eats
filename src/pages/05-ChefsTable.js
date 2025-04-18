@@ -21,6 +21,7 @@ function ChefsTable() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [isWipeWindow, setIsWipeWindow] = useState(false);
 
   const fetchSubmissions = async () => {
     setLoading(true);
@@ -42,42 +43,17 @@ function ChefsTable() {
   };
 
   const checkAndWipe = () => {
+    // For testing: Wipe every minute
     const now = new Date();
-    const day = now.getDay(); // Sunday = 0
-    const hour = now.getHours();
     const minute = now.getMinutes();
-  
-    const inWipeWindow =
-      (
-        [1, 2, 3, 4, 5].includes(day) && (
-          (hour === 10 && minute >= 30) ||   // 10:30am to 11:00am (M-F)
-          (hour === 14 || hour === 15 || (hour === 16 && minute < 45)) ||   // 2:00pm to 4:45pm (M-F)
-          (hour === 20) ||   // 8:00pm (M-F)
-          (hour === 23) ||   // 11:00pm (Sun-Thu)
-          (hour < 7 || (hour === 7 && minute < 30))   // 12:00am - 7:30am (M-F)
-        )
-      ) ||
-      (
-        [6, 0].includes(day) && (
-          (hour < 9) ||   // 12:00am - 9:00am (Sat-Sun)
-          (hour === 13 && minute >= 30) ||   // 1:30pm (Sat-Sun)
-          (hour >= 14 && hour < 17)   // 2:00pm - 5:00pm (Sat-Sun)
-        )
-      ) ||
-      (
-        [5, 6].includes(day) && hour === 20  // 8:00pm (Fri-Sat)
-      );
-  
-    console.log(`[DEBUG] Time: ${hour}:${minute}, Day: ${day}, Wipe? ${inWipeWindow}`);
-  
-    if (inWipeWindow) {
-      setItems([]);
-      console.log("[DEBUG] Menu wiped.");
-    }
-  };    
+    const second = now.getSeconds();
+    console.log(`[DEBUG] Time: ${now.toLocaleTimeString()}, Wipe? true`);
+    setIsWipeWindow(true); // Always wipe for testing
+  };
 
   useEffect(() => {
     fetchSubmissions();
+    checkAndWipe();
     const interval = setInterval(checkAndWipe, 60000); // Check every 1 min
     return () => clearInterval(interval);
   }, []);
@@ -87,7 +63,7 @@ function ChefsTable() {
       <div className="p-8">
         <h2 className="text-3xl font-bold">Chef's Table</h2>
         <p className="text-gray-600">World Inspired Cuisine</p>
-        
+
         <button
           onClick={fetchSubmissions}
           className="mt-4 bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
@@ -100,6 +76,8 @@ function ChefsTable() {
           <p className="text-gray-600 mt-4">Loading submissions...</p>
         ) : error ? (
           <p className="text-red-500 mt-4">{error}</p>
+        ) : isWipeWindow ? (
+          <p className="text-gray-600 mt-4">Menu is currently cleared.</p>
         ) : items.length === 0 ? (
           <p className="text-gray-600 mt-4">No submissions yet.</p>
         ) : (

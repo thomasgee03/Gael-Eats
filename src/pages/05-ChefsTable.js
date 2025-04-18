@@ -21,6 +21,8 @@ import React, { useEffect, useState, Component } from 'react';
        const [items, setItems] = useState([]);
        const [loading, setLoading] = useState(true);
        const [error, setError] = useState('');
+       const inWipeWindow = minute % 2 === 0;
+
 
        const fetchSubmissions = async () => {
          setLoading(true);
@@ -41,8 +43,63 @@ import React, { useEffect, useState, Component } from 'react';
        };
 
        useEffect(() => {
-         fetchSubmissions();
-       }, []);
+        fetchSubmissions();
+      
+        const checkAndWipe = () => {
+          const now = new Date();
+          const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+          const hour = now.getHours();
+          const minute = now.getMinutes();
+      
+          // 🕒 Wipe times (just a few examples)
+          const inWipeWindow =
+            (
+              // 10:30–11:00am Mon–Fri
+              [1, 2, 3, 4, 5].includes(day) && hour === 10 && minute >= 30
+            ) ||
+            (
+              // 2:00–4:45pm Mon–Fri
+              [1, 2, 3, 4, 5].includes(day) &&
+              ((hour === 14) || (hour === 15) || (hour === 16 && minute < 45))
+            ) ||
+            (
+              // 8:00–9:00pm Mon–Thu
+              [1, 2, 3, 4].includes(day) && hour === 20
+            ) ||
+            (
+              // 11:00–11:59pm Mon–Thu, Sun
+              ([0, 1, 2, 3, 4].includes(day)) && hour === 23
+            ) ||
+            (
+              // 12:00–7:30am Mon–Fri
+              [1, 2, 3, 4, 5].includes(day) &&
+              ((hour >= 0 && hour < 7) || (hour === 7 && minute < 30))
+            ) ||
+            (
+              // 8:00–11:59pm Fri–Sat
+              [5, 6].includes(day) && hour === 20
+            ) ||
+            (
+              // 12:00–9:00am Sat–Sun
+              [6, 0].includes(day) &&
+              ((hour >= 0 && hour < 9))
+            ) ||
+            (
+              // 1:30–5:00pm Sat–Sun
+              [0, 6].includes(day) &&
+              ((hour === 13 && minute >= 30) || (hour >= 14 && hour < 17))
+            );
+      
+          if (inWipeWindow) {
+            setItems([]); // 👈 Wipe from frontend state
+          }
+        };
+      
+        const interval = setInterval(checkAndWipe, 60000); // check every minute
+      
+        return () => clearInterval(interval);
+      }, []);
+      
 
        return (
          <ErrorBoundary>

@@ -16,6 +16,12 @@ app.use(cors({
 
 app.use(express.json());
 
+app.get('/wipe-now/:label', async (req, res) => {
+  const label = req.params.label || 'Manual Wipe';
+  await wipeSubmissions(label);
+  res.send(`Submissions wiped at ${label}`);
+});
+
 app.get('/', (req, res) => {
   res.send('Server is up and running!');
 });

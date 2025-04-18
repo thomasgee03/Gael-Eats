@@ -43,12 +43,26 @@ function ChefsTable() {
   };
 
   const checkAndWipe = () => {
-    // For testing: Wipe every minute
     const now = new Date();
+    const day = now.getDay(); // Sunday=0, Monday=1, ..., Saturday=6
+    const hour = now.getHours();
     const minute = now.getMinutes();
-    const second = now.getSeconds();
-    console.log(`[DEBUG] Time: ${now.toLocaleTimeString()}, Wipe? true`);
-    setIsWipeWindow(true); // Always wipe for testing
+
+    // Define wipe times
+    const isWipeTime =
+      // 10:30 AM, Mon-Fri
+      ([1, 2, 3, 4, 5].includes(day) && hour === 10 && minute === 30) ||
+      // 2:00 PM, Mon-Fri
+      ([1, 2, 3, 4, 5].includes(day) && hour === 14 && minute === 0) ||
+      // 8:00 PM, Mon-Sat
+      ([1, 2, 3, 4, 5, 6].includes(day) && hour === 20 && minute === 0) ||
+      // 11:00 PM, Mon-Thu, Sun
+      ([0, 1, 2, 3, 4].includes(day) && hour === 23 && minute === 0) ||
+      // 1:30 PM, Sat-Sun
+      ([0, 6].includes(day) && hour === 13 && minute === 30);
+
+    console.log(`[DEBUG] Time: ${now.toLocaleTimeString()}, Day: ${day}, Wipe? ${isWipeTime}`);
+    setIsWipeWindow(isWipeTime);
   };
 
   useEffect(() => {

@@ -21,14 +21,16 @@ function ChefsTable() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [isWipeWindow, setIsWipeWindow] = useState(false);
+  const [lastWipeTime, setLastWipeTime] = useState(new Date()); // Initialize to current time
 
   const fetchSubmissions = async () => {
     setLoading(true);
     setError('');
     try {
       console.log('[DEBUG] Fetching submissions...');
-      const res = await axios.get("https://gael-eats-1.onrender.com/api/submissions/chef's-table");
+      const res = await axios.get("https://gael-eats-1.onrender.com/api/submissions/chef's-table", {
+        params: { after: lastWipeTime.toISOString() }
+      });
       if (Array.isArray(res.data)) {
         setItems(res.data);
       } else {
@@ -42,33 +44,10 @@ function ChefsTable() {
     }
   };
 
-  const checkAndWipe = () => {
-    const now = new Date();
-    const day = now.getDay(); // Sunday=0, Monday=1, ..., Saturday=6
-    const hour = now.getHours();
-    const minute = now.getMinutes();
-
-    // Define wipe times
-    const isWipeTime =
-      // 10:30 AM, Mon-Fri
-      ([1, 2, 3, 4, 5].includes(day) && hour === 10 && minute === 30) ||
-      // 2:00 PM, Mon-Fri
-      ([1, 2, 3, 4, 5].includes(day) && hour === 14 && minute === 0) ||
-      // 8:00 PM, Mon-Sat
-      ([1, 2, 3, 4, 5, 6].includes(day) && hour === 20 && minute === 0) ||
-      // 11:00 PM, Mon-Thu, Sun
-      ([0, 1, 2, 3, 4].includes(day) && hour === 23 && minute === 0) ||
-      // 1:30 PM, Sat-Sun
-      ([0, 6].includes(day) && hour === 13 && minute === 30);
-
-    console.log(`[DEBUG] Time: ${now.toLocaleTimeString()}, Day: ${day}, Wipe? ${isWipeTime}`);
-    setIsWipeWindow(isWipeTime);
-  };
-
   useEffect(() => {
     fetchSubmissions();
-    checkAndWipe();
-    const interval = setInterval(checkAndWipe, 60000); // Check every 1 min
+    // Refresh submissions every minute to catch new wipes
+    const interval = setInterval(fetchSubmissions, 60000);
     return () => clearInterval(interval);
   }, []);
 
@@ -90,8 +69,6 @@ function ChefsTable() {
           <p className="text-gray-600 mt-4">Loading submissions...</p>
         ) : error ? (
           <p className="text-red-500 mt-4">{error}</p>
-        ) : isWipeWindow ? (
-          <p className="text-gray-600 mt-4">Menu is currently cleared.</p>
         ) : items.length === 0 ? (
           <p className="text-gray-600 mt-4">No submissions yet.</p>
         ) : (

@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const cron = require('node-cron');
 const Submission = require('./models/Submission');
-
 require('dotenv').config();
 
 const submissionsRoute = require('./routes/submissions');
@@ -10,16 +10,10 @@ const submissionsRoute = require('./routes/submissions');
 const app = express();
 
 app.use(cors({
-  origin: 'https://thomasgee03.github.io',
+  origin: ['https://thomasgee03.github.io', 'http://localhost:3000'], // Added localhost for dev
 }));
 
 app.use(express.json());
-
-app.get('/wipe-now/:label', async (req, res) => {
-  const label = req.params.label || 'Manual Wipe';
-  await wipeSubmissions(label);
-  res.send(`Submissions wiped at ${label}`);
-});
 
 app.get('/', (req, res) => {
   res.send('Server is up and running!');
@@ -27,15 +21,22 @@ app.get('/', (req, res) => {
 
 app.use('/api/submissions', submissionsRoute);
 
-// ✅ Wipe function (define it outside connectDB)
-const wipeSubmissions = async (label) => {
+// Wipe all submissions for all stations
+const wipeAllSubmissions = async (label) => {
   try {
     const result = await Submission.deleteMany({});
-    console.log(`[${new Date().toLocaleString()}] (${label}) Wiped ${result.deletedCount} submissions.`);
+    console.log(`[${new Date().toLocaleString()}] (${label}) Wiped ${result.deletedCount} submissions across all stations.`);
   } catch (err) {
     console.error(`[${new Date().toLocaleString()}] (${label}) Error wiping submissions:`, err);
   }
 };
+
+// Schedule wipes at specified times (America/Los_Angeles timezone)
+cron.schedule('30 10 * * 1-5', () => wipeAllSubmissions('10:30 AM Mon-Fri'), { timezone: 'America/Los_Angeles' });
+cron.schedule('0 14 * * 1-5', () => wipeAllSubmissions('2:00 PM Mon-Fri'), { timezone: 'America/Los_Angeles' });
+cron.schedule('0 20 * * 1-6', () => wipeAllSubmissions('8:00 PM Mon-Sat'), { timezone: 'America/Los_Angeles' });
+cron.schedule('0 23 * * 0-4', () => wipeAllSubmissions('11:00 PM Mon-Thu,Sun'), { timezone: 'America/Los_Angeles' });
+cron.schedule('30 13 * * 0,6', () => wipeAllSubmissions('1:30 PM Sat-Sun'), { timezone: 'America/Los_Angeles' });
 
 const connectDB = async () => {
   try {

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Submission = require('../models/Submission');
-const isWithinBlockedTime = require('../utils/blockWindow');
 
 // Route to get all submissions
 router.get('/', async (req, res) => {
@@ -15,10 +14,15 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Route to get submissions for Chef's Table
+// Route to get submissions for Chef's Table with optional timestamp filter
 router.get("/chef's-table", async (req, res) => {
   try {
-    const submissions = await Submission.find({ station: "Chef's Table" });
+    const { after } = req.query;
+    const query = { station: "Chef's Table" };
+    if (after) {
+      query.createdAt = { $gt: new Date(after) };
+    }
+    const submissions = await Submission.find(query);
     console.log("Chef's Table submissions:", submissions);
     res.json(submissions);
   } catch (err) {
@@ -27,10 +31,31 @@ router.get("/chef's-table", async (req, res) => {
   }
 });
 
+// Route to delete all submissions (secured with API key)
+router.delete('/', async (req, res) => {
+  const apiKey = req.headers['x-api-key'];
+  if (apiKey !== process.env.API_KEY) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+  try {
+    const result = await Submission.deleteMany({});
+    console.log(`[${new Date().toLocaleString()}] Wiped ${result.deletedCount} submissions across all stations.`);
+    res.json({ message: 'All submissions wiped successfully', deletedCount: result.deletedCount });
+  } catch (err) {
+    console.error("Error wiping submissions:", err);
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Route to get submissions for Clean Plates
 router.get("/clean-plates", async (req, res) => {
   try {
-    const submissions = await Submission.find({ station: "Clean Plates" });
+    const { after } = req.query;
+    const query = { station: "Clean Plates" };
+    if (after) {
+      query.createdAt = { $gt: new Date(after) };
+    }
+    const submissions = await Submission.find(query);
     console.log("Clean Plates submissions:", submissions);
     res.json(submissions);
   } catch (err) {
@@ -42,7 +67,12 @@ router.get("/clean-plates", async (req, res) => {
 // Route to get submissions for Central Oven
 router.get("/central-oven", async (req, res) => {
   try {
-    const submissions = await Submission.find({ station: "Central Oven" });
+    const { after } = req.query;
+    const query = { station: "Central Oven" };
+    if (after) {
+      query.createdAt = { $gt: new Date(after) };
+    }
+    const submissions = await Submission.find(query);
     console.log("Central Oven submissions:", submissions);
     res.json(submissions);
   } catch (err) {
@@ -54,7 +84,12 @@ router.get("/central-oven", async (req, res) => {
 // Route to get submissions for Black Label Grill
 router.get("/black-label-grill", async (req, res) => {
   try {
-    const submissions = await Submission.find({ station: "Black Label Grill" });
+    const { after } = req.query;
+    const query = { station: "Black Label Grill" };
+    if (after) {
+      query.createdAt = { $gt: new Date(after) };
+    }
+    const submissions = await Submission.find(query);
     console.log("Black Label Grill submissions:", submissions);
     res.json(submissions);
   } catch (err) {
@@ -66,7 +101,12 @@ router.get("/black-label-grill", async (req, res) => {
 // Route to get submissions for WildFlour
 router.get("/wild-flour", async (req, res) => {
   try {
-    const submissions = await Submission.find({ station: "WildFlour" });
+    const { after } = req.query;
+    const query = { station: "WildFlour" };
+    if (after) {
+      query.createdAt = { $gt: new Date(after) };
+    }
+    const submissions = await Submission.find(query);
     console.log("WildFlour submissions:", submissions);
     res.json(submissions);
   } catch (err) {

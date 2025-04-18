@@ -46,35 +46,35 @@ function ChefsTable() {
     const day = now.getDay(); // Sunday = 0
     const hour = now.getHours();
     const minute = now.getMinutes();
-
+  
     const inWipeWindow =
       (
         [1, 2, 3, 4, 5].includes(day) && (
-          (hour === 10 && minute >= 30) ||
-          (hour === 14 || hour === 15 || (hour === 16 && minute < 45)) ||
-          (hour === 20) ||
-          (hour === 23) ||
-          (hour < 7 || (hour === 7 && minute < 30))
+          (hour === 10 && minute >= 30) ||   // 10:30am to 11:00am (M-F)
+          (hour === 14 || hour === 15 || (hour === 16 && minute < 45)) ||   // 2:00pm to 4:45pm (M-F)
+          (hour === 20) ||   // 8:00pm (M-F)
+          (hour === 23) ||   // 11:00pm (Sun-Thu)
+          (hour < 7 || (hour === 7 && minute < 30))   // 12:00am - 7:30am (M-F)
         )
       ) ||
       (
         [6, 0].includes(day) && (
-          (hour < 9) ||
-          (hour === 13 && minute >= 30) ||
-          (hour >= 14 && hour < 17)
+          (hour < 9) ||   // 12:00am - 9:00am (Sat-Sun)
+          (hour === 13 && minute >= 30) ||   // 1:30pm (Sat-Sun)
+          (hour >= 14 && hour < 17)   // 2:00pm - 5:00pm (Sat-Sun)
         )
       ) ||
       (
-        [5, 6].includes(day) && hour === 20
+        [5, 6].includes(day) && hour === 20  // 8:00pm (Fri-Sat)
       );
-
+  
     console.log(`[DEBUG] Time: ${hour}:${minute}, Day: ${day}, Wipe? ${inWipeWindow}`);
-
+  
     if (inWipeWindow) {
       setItems([]);
       console.log("[DEBUG] Menu wiped.");
     }
-  };
+  };  
 
   useEffect(() => {
     fetchSubmissions();

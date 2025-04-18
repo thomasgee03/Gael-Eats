@@ -28,11 +28,17 @@ function App() {
 
   {/* Right side: other links */}
   <div className="space-x-4">
-    <Link to="/home-page" className="hover:text-blue-600">Home Page</Link>
-    <Link to="/daily-menu" className="hover:text-blue-600">Daily Menu</Link>
-    <Link to="/hours" className="hover:text-blue-600">Hours</Link>
-    <Link to="/submission" className="hover:text-blue-600">Submission</Link>
-  </div>
+  <Link to="/home-page" className="hover:text-blue-600">Home Page</Link>
+  <Link to="/daily-menu" className="hover:text-blue-600">Daily Menu</Link>
+  <Link to="/hours" className="hover:text-blue-600">Hours</Link>
+  <Link
+    to="/submission"
+    className="hover:text-blue-600 border border-black px-2 py-1 rounded"
+  >
+    Submission
+  </Link>
+</div>
+
 </nav>
 
 

@@ -26,68 +26,59 @@ function ChefsTable() {
     setLoading(true);
     setError('');
     try {
+      console.log('[DEBUG] Fetching submissions...');
       const res = await axios.get("https://gael-eats-1.onrender.com/api/submissions/chef's-table");
       if (Array.isArray(res.data)) {
         setItems(res.data);
       } else {
         throw new Error('Invalid data format');
       }
-      setLoading(false);
     } catch (err) {
       console.error('Fetch error:', err);
       setError('Failed to load submissions. Please try again later.');
+    } finally {
       setLoading(false);
+    }
+  };
+
+  const checkAndWipe = () => {
+    const now = new Date();
+    const day = now.getDay(); // Sunday = 0
+    const hour = now.getHours();
+    const minute = now.getMinutes();
+
+    const inWipeWindow =
+      (
+        [1, 2, 3, 4, 5].includes(day) && (
+          (hour === 10 && minute >= 30) ||
+          (hour === 14 || hour === 15 || (hour === 16 && minute < 45)) ||
+          (hour === 20) ||
+          (hour === 23) ||
+          (hour < 7 || (hour === 7 && minute < 30))
+        )
+      ) ||
+      (
+        [6, 0].includes(day) && (
+          (hour < 9) ||
+          (hour === 13 && minute >= 30) ||
+          (hour >= 14 && hour < 17)
+        )
+      ) ||
+      (
+        [5, 6].includes(day) && hour === 20
+      );
+
+    console.log(`[DEBUG] Time: ${hour}:${minute}, Day: ${day}, Wipe? ${inWipeWindow}`);
+
+    if (inWipeWindow) {
+      setItems([]);
+      console.log("[DEBUG] Menu wiped.");
     }
   };
 
   useEffect(() => {
     fetchSubmissions();
-
-    const checkAndWipe = () => {
-      const now = new Date();
-      const day = now.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-      const hour = now.getHours();
-      const minute = now.getMinutes();
-      
-      console.log(`[${now.toLocaleTimeString()}] Checking wipe condition...`);
-
-      const inWipeWindow =
-  minute % 2 === 0 || // 👈 Add this line to wipe on even minutes
-  (
-    [1, 2, 3, 4, 5].includes(day) && hour === 10 && minute >= 30
-  ) ||
-  (
-    [1, 2, 3, 4, 5].includes(day) &&
-    ((hour === 14) || (hour === 15) || (hour === 16 && minute < 45))
-  ) ||
-  (
-    [1, 2, 3, 4].includes(day) && hour === 20
-  ) ||
-  (
-    [0, 1, 2, 3, 4].includes(day) && hour === 23
-  ) ||
-  (
-    [1, 2, 3, 4, 5].includes(day) &&
-    ((hour >= 0 && hour < 7) || (hour === 7 && minute < 30))
-  ) ||
-  (
-    [5, 6].includes(day) && hour === 20
-  ) ||
-  (
-    [6, 0].includes(day) && (hour >= 0 && hour < 9)
-  ) ||
-  (
-    [0, 6].includes(day) &&
-    ((hour === 13 && minute >= 30) || (hour >= 14 && hour < 17))
-  );
-
-
-      if (inWipeWindow) {
-        setItems([]); // ✅ wipe the frontend
-      }
-    };
-
-    const interval = setInterval(checkAndWipe, 60000); // check every minute
+    const interval = setInterval(checkAndWipe, 60000); // Check every 1 min
     return () => clearInterval(interval);
   }, []);
 
@@ -96,6 +87,7 @@ function ChefsTable() {
       <div className="p-8">
         <h2 className="text-3xl font-bold">Chef's Table</h2>
         <p className="text-gray-600">World Inspired Cuisine</p>
+        
         <button
           onClick={fetchSubmissions}
           className="mt-4 bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
@@ -139,4 +131,5 @@ function ChefsTable() {
 }
 
 export default ChefsTable;
+
 

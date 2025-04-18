@@ -50,33 +50,35 @@ function ChefsTable() {
       const minute = now.getMinutes();
 
       const inWipeWindow =
-        (
-          [1, 2, 3, 4, 5].includes(day) && hour === 10 && minute >= 30
-        ) ||
-        (
-          [1, 2, 3, 4, 5].includes(day) &&
-          ((hour === 14) || (hour === 15) || (hour === 16 && minute < 45))
-        ) ||
-        (
-          [1, 2, 3, 4].includes(day) && hour === 20
-        ) ||
-        (
-          [0, 1, 2, 3, 4].includes(day) && hour === 23
-        ) ||
-        (
-          [1, 2, 3, 4, 5].includes(day) &&
-          ((hour >= 0 && hour < 7) || (hour === 7 && minute < 30))
-        ) ||
-        (
-          [5, 6].includes(day) && hour === 20
-        ) ||
-        (
-          [6, 0].includes(day) && (hour >= 0 && hour < 9)
-        ) ||
-        (
-          [0, 6].includes(day) &&
-          ((hour === 13 && minute >= 30) || (hour >= 14 && hour < 17))
-        );
+  minute % 2 === 0 || // 👈 Add this line to wipe on even minutes
+  (
+    [1, 2, 3, 4, 5].includes(day) && hour === 10 && minute >= 30
+  ) ||
+  (
+    [1, 2, 3, 4, 5].includes(day) &&
+    ((hour === 14) || (hour === 15) || (hour === 16 && minute < 45))
+  ) ||
+  (
+    [1, 2, 3, 4].includes(day) && hour === 20
+  ) ||
+  (
+    [0, 1, 2, 3, 4].includes(day) && hour === 23
+  ) ||
+  (
+    [1, 2, 3, 4, 5].includes(day) &&
+    ((hour >= 0 && hour < 7) || (hour === 7 && minute < 30))
+  ) ||
+  (
+    [5, 6].includes(day) && hour === 20
+  ) ||
+  (
+    [6, 0].includes(day) && (hour >= 0 && hour < 9)
+  ) ||
+  (
+    [0, 6].includes(day) &&
+    ((hour === 13 && minute >= 30) || (hour >= 14 && hour < 17))
+  );
+
 
       if (inWipeWindow) {
         setItems([]); // ✅ wipe the frontend

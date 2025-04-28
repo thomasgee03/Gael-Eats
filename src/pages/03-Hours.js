@@ -1,8 +1,10 @@
 import React from 'react';
+import MapEmbed from './MapEmbed'; 
 
 function Hours() {
   return (
     <>
+      {/* Header Image */}
       <div className="relative">
         <img 
           src={`${process.env.PUBLIC_URL}/images/DiningHall.jpeg`} 
@@ -14,6 +16,7 @@ function Hours() {
         </h2>
       </div>
 
+      {/* Dining Hours List */}
       <div className="w-full max-w-screen-lg mx-auto p-6">
         {[
           ['Monday', 'Breakfast: 7:30am-10:30am', 'Lunch: 11:00am-2:00pm', 'Dinner: 4:45pm-8:00pm', 'Late Night: 9:00pm-11:00pm'],
@@ -36,9 +39,14 @@ function Hours() {
           </div>
         ))}
       </div>
+
+      {/* New Section: Location with Map */}
+      <div className="w-full max-w-screen-lg mx-auto p-6">
+        <h2 className="text-3xl font-bold mb-4">Our Location</h2>
+        <MapEmbed />
+      </div>
     </>
   );
 }
 
 export default Hours;
-

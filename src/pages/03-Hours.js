@@ -1,3 +1,5 @@
+import React from 'react';
+
 <div className="w-full max-w-screen-xl mx-auto p-6 flex flex-col lg:flex-row lg:items-start gap-8">
   {/* Dining Hours - Left Column */}
   <div className="lg:w-1/2 w-full">

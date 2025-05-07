@@ -114,6 +114,7 @@ function Submission() {
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           {!email ? (
   <div className="mb-4">
+    <p className="text-gray-600 mb-2">A Saint Mary's (@stmarys-ca.edu) email is required to make a submission.</p>
     <GoogleLogin
       onSuccess={(credentialResponse) => {
         const decoded = jwtDecode(credentialResponse.credential);

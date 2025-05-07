@@ -116,7 +116,7 @@ function Submission() {
   <div className="mb-4">
     <GoogleLogin
       onSuccess={(credentialResponse) => {
-        const decoded = jwtDecode(credentialResponse.credential);
+        const decoded = jwt_decode(credentialResponse.credential);
         if (decoded.email.endsWith('@stmarys-ca.edu')) {
           setEmail(decoded.email);
           setError('');
@@ -177,11 +177,3 @@ function Submission() {
 }
 
 export default Submission;
-
-
-
-
-
-
-
-

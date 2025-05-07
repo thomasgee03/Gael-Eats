@@ -3,7 +3,7 @@ import { Star } from 'lucide-react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
-import jwtDecode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 const slugToStation = {
   "chef's-table": "Chef's Table",

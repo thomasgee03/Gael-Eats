@@ -44,7 +44,7 @@ function Submission() {
     e.preventDefault();
 
     if (!email.endsWith('@stmarys-ca.edu')) {
-      setError('Please use a @stmarys-ca.edu email address.');
+      setError('Please sign in to make a submission.');
       return;
     }
 

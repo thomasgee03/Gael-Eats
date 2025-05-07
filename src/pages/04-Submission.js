@@ -3,7 +3,7 @@ import { Star } from 'lucide-react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
-import { jwt_decode } from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 const slugToStation = {
   "chef's-table": "Chef's Table",
@@ -116,7 +116,7 @@ function Submission() {
   <div className="mb-4">
     <GoogleLogin
       onSuccess={(credentialResponse) => {
-        const decoded = jwt_decode(credentialResponse.credential);
+        const decoded = jwtDecode(credentialResponse.credential);
         if (decoded.email.endsWith('@stmarys-ca.edu')) {
           setEmail(decoded.email);
           setError('');

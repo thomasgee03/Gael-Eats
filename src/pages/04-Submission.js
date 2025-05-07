@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Star } from 'lucide-react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from 'jwt-decode';
 
 const slugToStation = {
   "chef's-table": "Chef's Table",
@@ -110,14 +112,30 @@ function Submission() {
           </div>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-            <input
-              type="email"
-              placeholder="Email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-300 px-4 py-2 rounded"
-              required
-            />
+          {!email ? (
+  <div className="mb-4">
+    <GoogleLogin
+      onSuccess={(credentialResponse) => {
+        const decoded = jwt_decode(credentialResponse.credential);
+        if (decoded.email.endsWith('@stmarys-ca.edu')) {
+          setEmail(decoded.email);
+          setError('');
+        } else {
+          setError('Please use a @stmarys-ca.edu email address.');
+        }
+      }}
+      onError={() => setError('Google login failed')}
+    />
+  </div>
+) : (
+  <input
+    type="email"
+    value={email}
+    readOnly
+    className="w-full border border-gray-300 px-4 py-2 rounded bg-gray-100 text-gray-600"
+  />
+)}
+
 
             <textarea
               placeholder="Optional message"

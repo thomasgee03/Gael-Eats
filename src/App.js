@@ -11,10 +11,13 @@ import CleanPlates from './pages/06-CleanPlates';
 import CentralOven from './pages/07-CentralOven';
 import BlackLabelGrill from './pages/08-BlackLabelGrill';
 import WildFlour from './pages/09-WildFlour';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
+const clientId = "460500940807-jcl6lheqseehcdfbrqtdeiam6a8ft4jo.apps.googleusercontent.com"
 
 function App() {
   return (
+    <GoogleOAuthProvider clientId={clientId}>
     <Router>
     <div className="min-h-screen bg-gray-100 relative flex flex-col items-center">
       {/* Navigation Buttons - TOP RIGHT */}
@@ -59,6 +62,7 @@ function App() {
 
     </div>
     </Router>
+  </GoogleOAuthProvider>
   );
 }
 

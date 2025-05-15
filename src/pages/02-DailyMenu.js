@@ -62,16 +62,16 @@ function DailyMenu() {
                   />
                 </div>
                 <div className="flex flex-col items-center">
-                  <h3 className="text-3xl font-bold">{section.title}</h3>
-                  <p className="text-lg text-gray-600 mt-1">{section.description}</p>
+                  <h3 className="text-5xl font-bold">{section.title}</h3>
+                  <p className="text-2xl text-gray-600 mt-1">{section.description}</p>
                   <div className="mt-4 flex justify-center space-x-4">
                     <Link to={`/submission?station=${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                      <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
+                      <button className="bg-black text-white px-8 py-4 text-xl rounded hover:bg-gray-800">
                         Submission
                       </button>
                     </Link>
                     <Link to={section.route || `/${section.title.toLowerCase().replace(/[^a-z0-9]/gi, '-')}`}>
-                      <button className="border border-gray-400 text-gray-800 px-4 py-2 rounded hover:bg-gray-100">
+                      <button className="border border-gray-400 text-gray-800 px-8 py-4 text-xl rounded hover:bg-gray-100">
                         Menu
                       </button>
                     </Link>
@@ -81,16 +81,16 @@ function DailyMenu() {
             ) : (
               <>
                 <div className="flex flex-col items-center">
-                  <h3 className="text-3xl font-bold">{section.title}</h3>
-                  <p className="text-lg text-gray-600 mt-1">{section.description}</p>
+                  <h3 className="text-5xl font-bold">{section.title}</h3>
+                  <p className="text-2xl text-gray-600 mt-1">{section.description}</p>
                   <div className="mt-4 flex justify-center space-x-4">
                     <Link to={`/submission?station=${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                      <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
+                      <button className="bg-black text-white px-8 py-4 text-xl rounded hover:bg-gray-800">
                         Submission
                       </button>
                     </Link>
                     <Link to={section.route || `/${section.title.toLowerCase().replace(/[^a-z0-9]/gi, '-')}`}>
-                      <button className="border border-gray-400 text-gray-800 px-4 py-2 rounded hover:bg-gray-100">
+                      <button className="border border-gray-400 text-gray-800 px-8 py-4 text-xl rounded hover:bg-gray-100">
                         Menu
                       </button>
                     </Link>

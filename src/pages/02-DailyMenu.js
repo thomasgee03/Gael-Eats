@@ -62,8 +62,8 @@ function DailyMenu() {
                   />
                 </div>
                 <div className="flex flex-col items-center">
-                  <h3 className="text-2xl font-bold">{section.title}</h3>
-                  <p className="text-gray-600 mt-1">{section.description}</p>
+                  <h3 className="text-3xl font-bold">{section.title}</h3>
+                  <p className="text-lg text-gray-600 mt-1">{section.description}</p>
                   <div className="mt-4 flex justify-center space-x-4">
                     <Link to={`/submission?station=${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
                       <button className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">

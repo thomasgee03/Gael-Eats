@@ -31,12 +31,12 @@ function App() {
 
   {/* Right side: other links */}
   <div className="space-x-4">
-  <Link to="/home-page" className="hover:text-blue-600">Home Page</Link>
-  <Link to="/daily-menu" className="hover:text-blue-600">Daily Menu</Link>
-  <Link to="/hours" className="hover:text-blue-600">Hours</Link>
+  <Link to="/home-page" className="hover:text-blue-600 text-lg">Home Page</Link>
+  <Link to="/daily-menu" className="hover:text-blue-600 text-lg">Daily Menu</Link>
+  <Link to="/hours" className="hover:text-blue-600 text-lg">Hours</Link>
   <Link
   to="/submission"
-  className="bg-black text-white px-3 py-1 rounded hover:bg-gray-800 transition"
+  className="bg-black text-white px-3 py-1 rounded hover:bg-gray-800 transition text-lg font-semibold"
 >
   Submission
 </Link>

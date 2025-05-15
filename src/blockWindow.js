@@ -1,6 +1,6 @@
 function isWithinBlockedTime() {
     const now = new Date();
-    const day = now.getDay(); // Sunday = 0, Monday = 1, ..., Saturday = 6
+    const day = now.getDay();
     const hours = now.getHours();
     const minutes = now.getMinutes();
     const time = hours * 60 + minutes;

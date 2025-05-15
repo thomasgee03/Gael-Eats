@@ -82,7 +82,7 @@ function Submission() {
           <p className="text-sm text-gray-400 mt-1"></p>
 
           <div className="my-4">
-            <label htmlFor="station-select" className="block mb-2 text-lg font-semibold">
+            <label htmlFor="station-select" className="block mb-2 text-xl font-semibold">
               Choose Station:
             </label>
             <select
@@ -100,7 +100,7 @@ function Submission() {
           </div>
 
           <div className="my-4">
-            <label className="block mb-2 font-semibold">Enter Food Item:</label>
+            <label className="block mb-2 text-xl font-semibold">Enter Food Item:</label>
             <input
               type="text"
               placeholder="Type your food item"
@@ -114,7 +114,7 @@ function Submission() {
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           {!email ? (
   <div className="mb-4">
-    <p className="text-gray-600 mb-2">A Saint Mary's (@stmarys-ca.edu) email is required to make a submission.</p>
+    <p className="text-lg text-gray-600 mb-2">A Saint Mary's (@stmarys-ca.edu) email is required to make a submission.</p>
     <GoogleLogin
       onSuccess={(credentialResponse) => {
         const decoded = jwtDecode(credentialResponse.credential);
@@ -126,6 +126,7 @@ function Submission() {
         }
       }}
       onError={() => setError('Google login failed')}
+      width="100%"
     />
   </div>
 ) : (
